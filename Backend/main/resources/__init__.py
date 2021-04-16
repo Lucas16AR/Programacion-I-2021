@@ -1,0 +1,16 @@
+from .bolsones import Bolsones as BolsonesResources
+from .bolsones import Bolson as BolsonResources
+from .bolsones_venta import Bolsones_Venta as BolsonesVentaResources
+from .bolsones_venta import Bolson_Venta as BolsonVentaResources
+from .bolsones_pendientes import Bolsones_Pendientes as BolsonesPendientesResources
+from .bolsones_pendientes import Bolson_Pendiente as BolsonPendienteResources
+from .bolsones_previos import Bolsones_Previos as BolsonesPreviosResources
+from .bolsones_previos import Bolson_Previo as BolsonPrevioResources
+from .productos import Productos as ProductosResources
+from .productos import Producto as ProductoResources
+from .clientes import Clientes as ClientesResources
+from .clientes import Cliente as ClienteResources
+from .compras import Compras as ComprasResources
+from .compras import Compra as CompraResources
+from .proveedores import Proveedores as ProveedoresResources
+from .proveedores import Proveedor as ProveedorResources
