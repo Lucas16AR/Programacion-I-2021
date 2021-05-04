@@ -1,5 +1,6 @@
-from .Bolson import Bolson as BolsonModel
-from .Cliente import Cliente as ClienteModel
-from .Compra import Compra as CompraModel
-from .Producto import Producto as ProductoModel
-from .Proveedor import Proveedor as ProveedorModel
+from .bolson import bolson as BolsonModel
+from .cliente import cliente as ClienteModel
+from .compra import compra as CompraModel
+from .producto import producto as ProductoModel
+from .proveedor import proveedor as ProveedorModel
+from .productobolson import productobolson as ProductoBolsonModel

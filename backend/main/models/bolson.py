@@ -1,10 +1,13 @@
 from .. import db
+import datetime as dt
 
 class Bolson(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable = False)
     aprobado = db.Column(db.Boolean, default=False, nullable = False)
     fecha = db.Column(db.DateTime, nullable = False)
+    compras = db.relationship("ProductoBolson", back_populates = "bolson", cascade = "all, delete-orphan")
+    
     def __repr__(self):
         return f'Bolson: {self.nombre}, {self.aprobado}, {self.fecha}'
     def to_json(self):

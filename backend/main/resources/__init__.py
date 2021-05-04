@@ -14,3 +14,5 @@ from .compras import Compras as ComprasResources
 from .compras import Compra as CompraResources
 from .proveedores import Proveedores as ProveedoresResources
 from .proveedores import Proveedor as ProveedorResources
+from .productos_bolsones import ProductoBolson as ProductoBolsonResource
+from .productos_bolsones import ProductosBolsones as ProductosBolsonesResource
