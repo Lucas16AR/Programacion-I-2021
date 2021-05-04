@@ -6,58 +6,43 @@ from main.models import BolsonModel
 class Bolsones_Pendientes(Resource):
     
     def get(self):
-        page = 1
-        per_page = 10
         bolsones = db.session.query(BolsonModel).filter(BolsonModel.aprobado == 0)
-
-        if request.get_json():
-           filters = request.get_json().items()
-           for key, value in filters:
-               if key == 'page':
-                   page = int(value)
-               elif key == 'per_page':
-                   per_page = int(value)
-       bolsones = bolsones.paginate(page, per_page, True, 30)
-       return jsonify({
-           'bolsonespendientes': [bolson.to_json() for bolson in bolsones.items],
-           'total': bolsones.total,
-           'pages': bolsones.pages,
-           'page': page
-       })
+        return jsonify({ 
+        'BolsonesPendientes': [bolson.to_json() for bolson in bolsones]
+        })
 
     def post(self):
-        bolsonpendiente = BolsonModel.from_json(request.get_json())
-        db.session.add(bolsonpendiente)
+        bolson_pendiente = BolsonModel.from_json(request.get_json())
+        db.session.add(bolson_pendiente)
         db.session.commit()
-        return bolsonpendiente.to_json(), 201
-
+        return bolson_pendiente.to_json(), 201
 
 class Bolson_Pendiente(Resource):
-    
     def get(self, id):
-        bolsonpendiente = db.session.query(BolsonModel).get_or_404(id)
-        if bolsonpendiente.aprobado == 0:
-            return bolsonpendiente.to_json()
+        bolson_pendiente = db.session.query(BolsonModel).get_or_404(id)
+        if bolson_pendiente.aprobado == 0:
+            return bolson_pendiente.to_json()
         else:
-            return '', 404
+            return '', 404    
+
 
     def delete(self, id):
-        bolsonpendiente = db.session.query(BolsonModel).get_or_404(id)
-        if bolsonpendiente.aprobado == 0:
-            db.session.delete(bolsonpendiente)
+        bolson_pendiente = db.session.query(BolsonModel).get_or_404(id)
+        if bolson_pendiente.aprobado == 0:
+            db.session.delete(bolson_pendiente)
             db.session.commit()
             return '', 204
         else:
             return '', 404
-    
+
     def put(self, id):
-        bolsonpendiente = db.session.query(BolsonModel).get_or_404(id)
+        bolson_pendiente = db.session.query(BolsonModel).get_or_404(id)
         data = request.get_json().items()
         for key, value in data:
-            setattr(bolsonpendiente, key, value)
-        if bolsonpendiente.aprobado == 0:
-            db.session.add(bolsonpendiente)
+            setattr(bolson_pendiente, key, value)
+        if bolson_pendiente.aprobado == 0:
+            db.session.add(bolson_pendiente)
             db.session.commit()
-            return bolsonpendiente.to_json(), 201
+            return bolson_pendiente.to_json(), 201
         else:
             return '', 404
